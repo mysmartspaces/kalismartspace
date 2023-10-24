@@ -1,0 +1,27 @@
+version: 2.1
+
+executors:
+  docker:
+    docker:
+      - image: docker:stable
+
+jobs:
+  build-image:
+    executor: docker
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build image
+          command: |
+            docker build -t csalab/kalilinux-docker:circleci
+            echo $DOCKER_PASS | docker login -u csalab --password-stdin
+            docker push csalab/kalilinux-docker:circleci
+
+workflows:
+  version: 2
+  kalilinux:
+    jobs:
+      - build-image:
+          name: build-image
+          context: Github
