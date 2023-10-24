@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Build image
           command: |
-            docker build -t csalab/kalilinux-docker:circleci
+            docker build -t csalab/kalilinux-docker:circleci .
             echo $DOCKER_PASS | docker login -u csalab --password-stdin
             docker push csalab/kalilinux-docker:circleci
 
