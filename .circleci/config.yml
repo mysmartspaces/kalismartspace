@@ -14,8 +14,8 @@ jobs:
       - run:
           name: Build image
           command: |
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
             docker build -t csalab/kalilinux-docker:circleci .
-            echo $DOCKER_PASS | docker login -u csalab --password-stdin
             docker push csalab/kalilinux-docker:circleci
 
 workflows:
