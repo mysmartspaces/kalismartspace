@@ -22,6 +22,4 @@ workflows:
   version: 2
   kalilinux:
     jobs:
-      - build-image:
-          name: build-image
-          context: Github
+      - build-image
